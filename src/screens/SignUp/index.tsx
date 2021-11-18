@@ -5,6 +5,7 @@ import { useTranslation } from 'react-i18next';
 import logo from 'assets/logo-wolox.png';
 import { Input } from 'components/Input';
 import { FieldError } from 'components/FieldError';
+import { IField } from 'types/field.interface';
 
 import styles from './styles.module.scss';
 import { FORM } from './constants';
@@ -19,6 +20,7 @@ export function SignUp() {
 
   const onSubmit = () => {
     const values = { ...getValues(), locale: i18n.language };
+    // eslint-disable-next-line
     console.log(values);
   };
 
@@ -26,7 +28,7 @@ export function SignUp() {
     <div className={`column middle ${styles.container}`}>
       <img className={`m-bottom-4 ${styles.logo}`} src={logo} />
       <form>
-        {FORM.map(field => (
+        {FORM.map((field: IField) => (
           <div className="m-bottom-2" key={field.key}>
             <Input className="m-bottom-3" register={register} field={field} />
             {errors[field.key] && <FieldError error={errors[field.key]} />}
