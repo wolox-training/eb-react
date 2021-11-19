@@ -2,9 +2,9 @@ import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
+import { ErrorMessage } from 'components/ErrorMessage';
 import logo from 'assets/logo-wolox.png';
 import { Input } from 'components/Input';
-import { FieldError } from 'components/FieldError';
 import { IField } from 'types/field.interface';
 
 import styles from './styles.module.scss';
@@ -30,8 +30,8 @@ export function SignUp() {
       <form>
         {FORM.map((field: IField) => (
           <div className="m-bottom-2" key={field.key}>
-            <Input className="m-bottom-3" register={register} field={field} />
-            {errors[field.key] && <FieldError error={errors[field.key]} />}
+            <Input register={register} field={field} />
+            {errors[field.key] && <ErrorMessage error={errors[field.key]} />}
           </div>
         ))}
         <button
