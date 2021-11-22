@@ -22,6 +22,11 @@
   max-width: 252px;
 }
 
+.errors {
+  display: block;
+  color: $red;
+}
+
 .buttonPrimary {
   background-color: $earls-green;
   color: $white;

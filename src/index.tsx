@@ -1,5 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 
 import App from 'components/App';
 import 'config/i18n';
@@ -7,11 +8,15 @@ import 'scss/application.scss';
 
 import reportWebVitals from './reportWebVitals';
 
+const queryClient = new QueryClient();
+
 const renderApp = () => {
   render(
-    <React.StrictMode>
-      <App />
-    </React.StrictMode>,
+    <QueryClientProvider client={queryClient}>
+      <React.StrictMode>
+        <App />
+      </React.StrictMode>
+    </QueryClientProvider>,
     document.getElementById('root')
   );
 };
