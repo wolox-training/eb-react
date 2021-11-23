@@ -8,7 +8,7 @@ function requireAll(requireContext) {
 use(initReactI18next);
 
 init({
-  lng: 'es',
+  lng: 'en',
   initImmediate: false
 });
 
