@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 
@@ -6,23 +6,32 @@ import { ErrorMessage } from 'components/ErrorMessage';
 import logo from 'assets/logo-wolox.png';
 import { Input } from 'components/Input';
 import { IField } from 'types/field.interface';
+import { signUp } from 'services/UserService';
 
 import styles from './styles.module.scss';
 import { FORM } from './constants';
 
 export function SignUp() {
   const { i18n } = useTranslation();
+  const [errorMessages, setErrorMessages] = useState<string[]>();
+
   const {
     getValues,
     register,
     handleSubmit,
-    formState: { errors }
+    formState: { errors, isValid }
   } = useForm({ mode: 'onBlur' });
 
   const onSubmit = () => {
     const values = { ...getValues(), locale: i18n.language };
-    // eslint-disable-next-line
-    console.log(values);
+
+    if (isValid) {
+      signUp(values).then(({ errors: errorsData, ...data }) => {
+        // eslint-disable-next-line
+        console.log(data);
+        setErrorMessages(errorsData?.full_messages || []);
+      });
+    }
   };
 
   return (
@@ -42,6 +51,16 @@ export function SignUp() {
           Sign In
         </button>
       </form>
+
+      {!!errorMessages?.length && (
+        <div className="m-top-2">
+          {errorMessages.map(error => (
+            <span className={`m-bottom-2 ${styles.errors}`} key={error}>
+              - {error}
+            </span>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
