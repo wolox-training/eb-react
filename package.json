@@ -12,11 +12,12 @@
     "@types/react-dom": "^16.9.8",
     "apisauce": "^1.1.2",
     "history": "^4.10.1",
-    "i18next": "^13.1.5",
+    "i18next": "^21.5.2",
     "node-sass": "^4.14.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hook-form": "^6.14.2",
+    "react-i18next": "^11.14.2",
     "react-router": "^5.2.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "^4.0.1",
@@ -36,7 +37,8 @@
     "lint-scss": "./node_modules/stylelint/bin/stylelint.js '**/*.scss'",
     "lint-diff": "git diff --name-only --cached --relative --diff-filter=ACM | grep -e \\.js$ -e \\.tsx$ -e \\.ts$ | xargs eslint",
     "coverage": "npm run test -- --coverage --watchAll=false",
-    "coverage-diff": "npm run test coverage -- --changedSince=development"
+    "coverage-diff": "npm run test coverage -- --changedSince=development",
+    "test-ci": "rescripts test --CI=true  --watchAll=false"
   },
   "browserslist": {
     "production": [
@@ -110,8 +112,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-commit": "npm run lint-diff && npm run lint-scss",
-      "pre-push": "npm run coverage-diff"
+      "pre-commit": "npm run lint && npm run test-ci",
+      "pre-push": "npm run test-ci"
     }
   }
 }
