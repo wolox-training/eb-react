@@ -15,6 +15,7 @@ export function SignUp() {
   const {
     getValues,
     register,
+    handleSubmit,
     formState: { errors }
   } = useForm({ mode: 'onBlur' });
 
@@ -27,18 +28,14 @@ export function SignUp() {
   return (
     <div className={`column middle ${styles.container}`}>
       <img className={`m-bottom-4 ${styles.logo}`} src={logo} />
-      <form>
+      <form onSubmit={handleSubmit(onSubmit)}>
         {FORM.map((field: IField) => (
           <div className="m-bottom-2" key={field.key}>
             <Input register={register} field={field} />
             {errors[field.key] && <ErrorMessage error={errors[field.key]} />}
           </div>
         ))}
-        <button
-          className={`m-bottom-6 ${styles.buttonPrimary} ${styles.topButton}`}
-          onClick={onSubmit}
-          type="button"
-        >
+        <button className={`m-bottom-6 ${styles.buttonPrimary} ${styles.topButton}`} type="submit">
           Sign Up
         </button>
         <button className={styles.button} type="button">
