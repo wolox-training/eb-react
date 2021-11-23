@@ -11,10 +11,6 @@ const STATUS_CODES = {
 };
 
 const api = create({
-  /*
-   * TODO Add this if you need it
-   * baseURL: process.env.API_BASE_URL,
-   */
   baseURL,
   timeout: 15000
 });
