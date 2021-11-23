@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
-import { useMutation } from 'react-query';
 
 import { ErrorMessage } from 'components/ErrorMessage';
 import logo from 'assets/logo-wolox.png';
@@ -15,17 +14,6 @@ import { FORM } from './constants';
 export function SignUp() {
   const { i18n } = useTranslation();
   const [errorMessages, setErrorMessages] = useState<string[]>();
-  const { mutate } = useMutation(signUp, {
-    onSuccess: ({ errors, ...data }) => {
-      // eslint-disable-next-line
-      console.log(data);
-      setErrorMessages(errors?.full_messages || []);
-    },
-    onError: err => {
-      // eslint-disable-next-line
-      console.log(err);
-    }
-  });
 
   const {
     getValues,
@@ -37,7 +25,11 @@ export function SignUp() {
     const values = { ...getValues(), locale: i18n.language };
 
     if (isValid) {
-      mutate(values);
+      signUp(values).then(({ errors: errorsData, ...data }) => {
+        // eslint-disable-next-line
+        console.log(data);
+        setErrorMessages(errorsData?.full_messages || []);
+      });
     }
   };
 
