@@ -11,8 +11,8 @@ interface Props {
 
 export function Input({ field, register }: Props) {
   return (
-    <div className="m-bottom-3">
-      <label className={`m-bottom-2 ${styles.label}`} htmlFor={field.key}>
+    <div className="m-bottom-1">
+      <label className={`m-bottom-1 ${styles.label}`} htmlFor={field.key}>
         {field.label}
       </label>
       <input
