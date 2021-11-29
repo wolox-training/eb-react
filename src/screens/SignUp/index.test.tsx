@@ -6,7 +6,7 @@ import { Router } from 'react-router';
 import { BrowserRouter } from 'react-router-dom';
 import { createMemoryHistory } from 'history';
 
-import Home from 'screens/Home';
+import App from 'components/App';
 
 import { SignUp } from './index';
 
@@ -105,7 +105,7 @@ describe('<SignUp />', () => {
 
     render(
       <Router history={history}>
-        <Home />
+        <App />
       </Router>
     );
 
