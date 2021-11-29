@@ -16,11 +16,13 @@ export function Input({ field, register }: Props) {
         {field.label}
       </label>
       <input
+        role="input"
+        aria-label={field.key}
         className={`full-width m-bottom-1 ${styles.input}`}
         id={field.key}
         type={field.type}
         name={field.key}
-        ref={register({ required: 'Field required' })}
+        ref={register({ required: 'Field required', pattern: field?.pattern || '' })}
       />
     </div>
   );

@@ -8,5 +8,9 @@ interface Props {
 }
 
 export function ErrorMessage({ error }: Props) {
-  return <span className={styles.error}>{error?.message}</span>;
+  return (
+    <span role="message-error" className={styles.error}>
+      {error?.message}
+    </span>
+  );
 }
