@@ -1,0 +1,16 @@
+@import 'scss/components';
+
+.container {
+  border-top: 7px solid $cerulean;
+  box-shadow: 0 4px 10px 0 rgba($black, 0.5);
+  height: 70px;
+  left: 0;
+  padding: 0 2rem;
+  position: fixed;
+  top: 0;
+  width: 100%;
+}
+
+.logo {
+  width: 212px;
+}

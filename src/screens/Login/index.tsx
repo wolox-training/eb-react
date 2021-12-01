@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 import { Input } from 'components/Input';
 import { ErrorMessage } from 'components/ErrorMessage';
@@ -8,11 +8,14 @@ import { IField } from 'types/field.interface';
 import { signIn } from 'services/UserService';
 import { IUserLogin } from 'types/user.interface';
 import logo from 'assets/logo-wolox.png';
+import LocalStorageService from 'services/LocalStorageService';
 
 import { FORM } from './constants';
 import styles from './styles.module.scss';
 
 export function Login() {
+  const localStore = LocalStorageService;
+  const history = useHistory();
   const [errorMessages, setErrorMessages] = useState<string[]>();
 
   const {
@@ -27,8 +30,10 @@ export function Login() {
 
     if (isValid) {
       signIn(values).then(({ errors: errorsData, ...data }) => {
-        // eslint-disable-next-line no-console
-        console.log(data);
+        if (data.accessToken) {
+          localStore.setValue('access-token', data.accessToken);
+          history.push('/home');
+        }
         setErrorMessages(errorsData || []);
       });
     }
