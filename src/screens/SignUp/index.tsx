@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
 import { useHistory } from 'react-router';
-import { NavLink } from 'react-router-dom';
 
 import { ErrorMessage } from 'components/ErrorMessage';
 import logo from 'assets/logo-wolox.png';
@@ -57,9 +56,9 @@ export function SignUp() {
         >
           Sign Up
         </button>
-        <NavLink to="/" className={`row middle center ${styles.button}`} type="button">
+        <button className={styles.button} type="button">
           Sign In
-        </NavLink>
+        </button>
       </form>
 
       {!!errorMessages?.length && (
