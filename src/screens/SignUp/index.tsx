@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { useTranslation } from 'react-i18next';
+import { useHistory } from 'react-router';
 
 import { ErrorMessage } from 'components/ErrorMessage';
 import logo from 'assets/logo-wolox.png';
@@ -13,6 +14,7 @@ import { FORM } from './constants';
 
 export function SignUp() {
   const { i18n } = useTranslation();
+  const history = useHistory();
   const [errorMessages, setErrorMessages] = useState<string[]>();
 
   const {
@@ -26,10 +28,13 @@ export function SignUp() {
     const values = { ...getValues(), locale: i18n.language };
 
     if (isValid) {
-      signUp(values).then(({ errors: errorsData, ...data }) => {
+      signUp(values).then(({ errors: errorsData }) => {
         // eslint-disable-next-line
-        console.log(data);
-        setErrorMessages(errorsData?.full_messages || []);
+        if(errorsData){
+          setErrorMessages(errorsData?.full_messages || []);
+        } else {
+          history.push('/');
+        }
       });
     }
   };
@@ -37,14 +42,18 @@ export function SignUp() {
   return (
     <div className={`column middle ${styles.container}`}>
       <img className={`m-bottom-4 ${styles.logo}`} src={logo} />
-      <form onSubmit={handleSubmit(onSubmit)}>
+      <form role="form" aria-invalid={isValid ? 'false' : 'true'} onSubmit={handleSubmit(onSubmit)}>
         {FORM.map((field: IField) => (
           <div className="m-bottom-2" key={field.key}>
             <Input register={register} field={field} />
             {errors[field.key] && <ErrorMessage error={errors[field.key]} />}
           </div>
         ))}
-        <button className={`m-bottom-6 ${styles.buttonPrimary} ${styles.topButton}`} type="submit">
+        <button
+          role="button-submit"
+          className={`m-bottom-6 ${styles.buttonPrimary} ${styles.topButton}`}
+          type="submit"
+        >
           Sign Up
         </button>
         <button className={styles.button} type="button">
