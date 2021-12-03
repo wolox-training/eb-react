@@ -1,24 +1,16 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
+import { useQuery } from 'react-query';
 
 import { getBooks } from 'services/BookService';
-import { IBook } from 'types/book.interface';
+import { IBookResponse } from 'types/book.interface';
 
 import styles from './styles.module.scss';
 
 function BookList() {
-  const [data, setData] = useState<IBook[]>([]);
-
-  useEffect(() => {
-    const fetchBooks = async () => {
-      const books = await getBooks();
-      setData(books.page);
-    };
-    fetchBooks();
-  }, []);
-
+  const { data } = useQuery<IBookResponse>({ queryFn: getBooks });
   return (
     <div className={`m-top-20 m-bottom-10 ${styles.containerList}`}>
-      {data.map(book => (
+      {data?.page.map(book => (
         <div key={book.id} className={`column ${styles.itemBook}`}>
           <img src={book.imageUrl} className={styles.image} alt="Cover book" />
           <span className={`m-top-2 ${styles.title}`}>{book.title}</span>
