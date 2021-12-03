@@ -1,0 +1,48 @@
+@import 'scss/components';
+
+.container {
+  background-color: $wild-sand;
+  border-top: 8px solid $cerulean;
+  padding: 1.5rem;
+  width: 100%;
+  max-width: 300px;
+}
+
+.logo {
+  align-self: center;
+  width: 90%;
+}
+
+.button {
+  border-radius: 5px;
+  border: 2px solid $earls-green;
+  color: $earls-green;
+  height: 32px;
+  width: 100%;
+  max-width: 252px;
+}
+
+.errors {
+  display: block;
+  color: $red;
+}
+
+.buttonPrimary {
+  background-color: $earls-green;
+  color: $white;
+  composes: button;
+}
+
+.topButton {
+  position: relative;
+
+  &::after {
+    background-color: $silver-chalice;
+    content: "";
+    height: 2px;
+    position: absolute;
+    right: 0;
+    top: 44px;
+    width: 100%;
+  }
+}
