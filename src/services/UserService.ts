@@ -12,5 +12,6 @@ export const signUp = async (user: IUser | { locale: string }): Promise<IUserRes
 export const signIn = async (user: IUserLogin): Promise<IUserLoginResponse> => {
   const { data, headers } = await api.post<IUserLoginResponse>(`${URL}/sign_in`, user);
   const accessToken = headers ? headers['access-token'] : '';
-  return { ...data, accessToken } as IUserLoginResponse;
+  const client = headers ? headers.client : '';
+  return { ...data, accessToken, client } as IUserLoginResponse;
 };

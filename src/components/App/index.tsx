@@ -1,6 +1,5 @@
 import React from 'react';
 import 'scss/application.scss';
-
 import { Switch } from 'react-router-dom';
 
 import Home from 'screens/Home/index';
@@ -9,11 +8,9 @@ import { SignUp } from 'screens/SignUp';
 import { PrivateRoute } from 'components/PrivateRoute';
 import { PublicRoute } from 'components/PublicRoute';
 
-import styles from './styles.module.scss';
-
 function App() {
   return (
-    <div className={`row middle center ${styles.app}`}>
+    <div className="row center">
       <Switch>
         <PublicRoute component={Login} exact path="/" />
         <PublicRoute component={SignUp} exact path="/sign_up" />

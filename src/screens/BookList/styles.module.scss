@@ -1,0 +1,25 @@
+@import 'scss/components';
+
+
+.containerList {
+  display: grid;
+  grid-gap: 1.5rem;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+}
+
+.itemBook {
+  box-shadow: 0 4px 10px 0 rgba($black, 0.5);
+  padding: 1.5rem;
+  width: 198px;
+}
+
+.title {
+  font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.image {
+  height: 200px;
+}
