@@ -1,6 +1,7 @@
 @import 'scss/components';
 
 .container {
+  background-color: $white;
   border-top: 7px solid $cerulean;
   box-shadow: 0 4px 10px 0 rgba($black, 0.5);
   height: 70px;

@@ -3,9 +3,10 @@
 .container {
   background-color: $wild-sand;
   border-top: 8px solid $cerulean;
-  padding: 1.5rem;
-  width: 100%;
   max-width: 300px;
+  padding: 1.5rem;
+  transform: translate(0%, 30%);
+  width: 100%;
 }
 
 .logo {
