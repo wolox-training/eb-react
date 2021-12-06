@@ -5,7 +5,7 @@ import LocalStorageService from 'services/LocalStorageService';
 
 interface IPrivateRoute {
   path: string;
-  exact: boolean;
+  exact?: boolean;
   component: FunctionComponent<any>;
 }
 
