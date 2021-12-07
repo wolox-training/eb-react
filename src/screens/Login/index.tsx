@@ -29,15 +29,18 @@ export function Login() {
     const values = { ...getValues() } as IUserLogin;
 
     if (isValid) {
-      signIn(values).then(({ errors: errorsData, ...res }) => {
-        if (res.accessToken) {
-          localStore.setValue('access-token', res.accessToken);
-          localStore.setValue('uid', res.data.uid);
-          localStore.setValue('client', res.client);
+      signIn(values)
+        .then(({ errors: errorsData, ...res }) => {
+          if (res.accessToken) {
+            localStore.setValue('access-token', res.accessToken);
+            localStore.setValue('uid', res.data.uid);
+            localStore.setValue('client', res.client);
+          }
+          setErrorMessages(errorsData || []);
+        })
+        .then(() => {
           history.push('/home');
-        }
-        setErrorMessages(errorsData || []);
-      });
+        });
     }
   };
 
