@@ -8,10 +8,14 @@ import styles from './styles.module.scss';
 
 function BookDetail() {
   const { id } = useParams<{ id: string }>();
-  const { data: book, isLoading } = useQuery(['books', id], () => getBook(id));
+  const { data: book, isLoading, error } = useQuery(['books', id], () => getBook(id));
   const history = useHistory();
 
   const goBack = () => history.goBack();
+
+  if (error) {
+    return <span className={`m-top-20 ${styles.errorMessage}`}>Something is wrong.</span>;
+  }
 
   return isLoading ? (
     <span>Loading...</span>
