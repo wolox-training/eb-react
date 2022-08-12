@@ -9,7 +9,9 @@ import 'scss/application.scss';
 
 import reportWebVitals from './reportWebVitals';
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: { queries: { refetchOnWindowFocus: false, refetchOnMount: false } }
+});
 
 const renderApp = () => {
   render(

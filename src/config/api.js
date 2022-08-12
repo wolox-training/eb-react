@@ -20,6 +20,11 @@ const api = create({
 api.addResponseTransform((response) => {
   if (response.ok) {
     response.data = camelize(response.data);
+  }else{
+    const storageService = LocalStorageService;
+    storageService.removeValue('access-token');
+    storageService.removeValue('uid');
+    storageService.removeValue('client'); 
   }
 });
 
